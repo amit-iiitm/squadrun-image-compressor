@@ -66,7 +66,7 @@ function fileUpload(form, action_url, div_id) {
 			}
 			if(form_no==1)
 			{
-			$('#'+div_id).prepend('<h6>Original size: '+content.original_size+'</h6><h6>Compressed size: '+content.compressed_size+'</h6><h6>Download: <a href="'+content.download_link+'"'+content.download_link+'</a></h6><h6>'+content.download_link+'</h6>');}
+			$('#'+div_id).prepend('<p><h6>Original size: '+content.original_size+'</h6><h6>Compressed size: '+content.compressed_size+'</h6></p><h6>Download: <a href="'+content.download_link+'"'+content.download_link+'</a></h6><h6>'+content.download_link+'</h6>');}
        },
        error:function(){
         $('#'+div_id).html('');
@@ -167,7 +167,7 @@ input[type=range].vslider::-webkit-slider-runnable-track {
 		</div>
 </div>
 
-<div class="row" style="text-align:center;">
+<div class="row" style="text-align:center;background-color:#d4f4ee;">
 	<div class="container">
    <form >
      <h4>Please upload a csv file here:<h4>
@@ -192,7 +192,7 @@ input[type=range].vslider::-webkit-slider-runnable-track {
 
  </div>
 
- <div class="row" style="text-align:center;">
+ <div class="row" style="text-align:center;background-color:#ede1e1;">
   
 	<div class="container">
    <form>
@@ -205,7 +205,7 @@ input[type=range].vslider::-webkit-slider-runnable-track {
       </div>
 
 
-      <input class='waves-effect waves-light btn' type="button" value="convert"  id='input_img'
+      <input  type="button" value="convert"  id='input_img'
         onclick="fileUpload(this.form,'/compress','upload_img'); return false;" >
 
       <div id="upload_img">
