@@ -69,7 +69,7 @@ function fileUpload(form, action_url, div_id) {
 			$('#'+div_id).prepend('<p><h6>Original size: '+content.original_size+'</h6><h6>Compressed size: '+content.compressed_size+'</h6></p><h6>Download: <a href="'+content.download_link+'"'+content.download_link+'</a></h6><h6>'+content.download_link+'</h6>');}
        },
        error:function(){
-        $('#'+div_id).prepend("<br>Error in image upload or incorrect url type");
+        $('#'+div_id).prepend("<br><p>Error in image upload or incorrect url type</p>");
        },
        processData: false,  // tell jQuery not to process the data
        contentType: false   // tell jQuery not to set contentType

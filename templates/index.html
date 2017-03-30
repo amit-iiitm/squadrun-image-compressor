@@ -20,7 +20,7 @@
 <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
 
 <script language="Javascript">
-function fileUpload(form, action_url, div_id) {
+function handleRequest(form, action_url, div_id) {
     
 
     // Set properties of form...
@@ -181,7 +181,7 @@ input[type=range].vslider::-webkit-slider-runnable-track {
      
 
       <input class='waves-effect waves-light btn' type="button" value="convert" id='input_csv'
-        onclick="fileUpload(this.form,'/compress','upload_csv'); return false;" >
+        onclick="handleRequest(this.form,'/compress','upload_csv'); return false;" >
 
       <div id="upload_csv">
      </div>
@@ -206,7 +206,7 @@ input[type=range].vslider::-webkit-slider-runnable-track {
 
 
       <input  type="button" value="convert"  id='input_img'
-        onclick="fileUpload(this.form,'/compress','upload_img'); return false;" >
+        onclick="handleRequest(this.form,'/compress','upload_img'); return false;" >
 
       <div id="upload_img">
      </div>
@@ -228,7 +228,7 @@ input[type=range].vslider::-webkit-slider-runnable-track {
 				<p><textarea  name="url_name" cols="60" rows="10"></textarea></p>
 				<br>
 				<input class='waves-effect waves-light btn' type="button" value="convert" id='input_url' 
-					onclick="fileUpload(this.form,'/handleurls','upload_urls'); return false;">	
+					onclick="handleRequest(this.form,'/handleurls','upload_urls'); return false;">	
 
 			<div id="upload_urls">
 			</div>	
