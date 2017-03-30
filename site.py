@@ -31,10 +31,12 @@ def readURL(csv_file):
 	print url_list
 	return url_list
 
+#handle homepage route
 @app.route('/')
 def index():
 	return render_template('index.html')
 
+#performs compression of csv or image file
 @app.route('/compress',methods=['GET','POST'])
 def compress_img():
 	file_obj=request.files["file_name"]
@@ -84,6 +86,8 @@ def compress_img():
 		return json.dumps({"response":"Invalid image file"})
 #http://www.espncricinfo.com/db/PICTURES/CMS/260800/260855.jpg
 #http://www.espncricinfo.com/db/PICTURES/CMS/209400/209441.3.jpg
+
+#handle multiple urls separated by enter
 @app.route('/handleurls',methods=['GET','POST'])
 def handle_url():
 	links=str(request.form["url_name"]).split('\n')
@@ -111,6 +115,7 @@ def handle_url():
 	
 	return json.dumps({"response":"received links","download_links":res_links})
 
+#serve static csv file
 @app.route('/download/<path:path>',methods=['POST','GET'])
 def serve_csv(path):
 	return send_from_directory('',path)

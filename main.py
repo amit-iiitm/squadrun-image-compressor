@@ -10,6 +10,7 @@ aws_key=''
 aws_secret=''
 bucket_name=''
 
+#check if the url is a valid image url
 def checkURL(link):
 	prefix=link.split(':')[0]
 	extn=link.split('.')[-1]
@@ -17,6 +18,7 @@ def checkURL(link):
 		return True
 	else:
 		return False
+
 #generate unique ID for the image of length 6
 def generate_uid():
 	uid=''
@@ -24,6 +26,7 @@ def generate_uid():
 		uid+=random.choice(string.lowercase)
 	return uid
 	
+#perform image compression using pil library
 def compress_image(pic,img_qlty=80,size_red=0.5):
 	#need to check if the pic is a file stored or a url
 	#in case of a url first open it and then compress

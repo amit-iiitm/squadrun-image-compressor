@@ -1,7 +1,6 @@
 import sys
 from cStringIO import StringIO
 from PIL import Image
-from cStringIO import StringIO
 import urllib2
 import string, random
 import csv
@@ -11,6 +10,7 @@ aws_key=''
 aws_secret=''
 bucket_name=''
 
+#check if the url is a valid image url
 def checkURL(link):
 	prefix=link.split(':')[0]
 	extn=link.split('.')[-1]
@@ -18,6 +18,7 @@ def checkURL(link):
 		return True
 	else:
 		return False
+
 #generate unique ID for the image of length 6
 def generate_uid():
 	uid=''
