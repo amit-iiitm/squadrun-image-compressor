@@ -55,7 +55,12 @@ function handleRequest(form, action_url, div_id) {
 			console.log(content.type);
 			if(form_no==0)
 			{
-				$('#'+div_id).prepend('<p><h6>Download: <a href="'+content.download_link+'"'+content.download_link+'</a></h6><h6>'+content.download_link+'</h6></p>');
+				if(content.response=="Invalid image file")
+				{
+					$('#'+div_id).prepend('<p>Invalid file type</p>')				
+				}
+				else{
+				$('#'+div_id).prepend('<p><h6>Download: <a href="'+content.download_link+'"'+content.download_link+'</a></h6><h6>'+content.download_link+'</h6></p>');}
 			}
 			
 			if(form_no==2)
@@ -66,10 +71,16 @@ function handleRequest(form, action_url, div_id) {
 			}
 			if(form_no==1)
 			{
-			$('#'+div_id).prepend('<p><h6>Original size: '+content.original_size+'</h6><h6>Compressed size: '+content.compressed_size+'</h6></p><h6>Download: <a href="'+content.download_link+'"'+content.download_link+'</a></h6><h6>'+content.download_link+'</h6>');}
+				if(content.response=="Invalid image file")
+				{
+					$('#'+div_id).prepend('<p>Invalid file type</p>')				
+				}
+				else{
+						$('#'+div_id).prepend('<p><h6>Original size: '+content.original_size+'</h6><h6>Compressed size: '+content.compressed_size+'</h6></p><h6>Download: <a href="'+content.download_link+'"'+content.download_link+'</a></h6><h6>'+content.download_link+'</h6>');}
+				}
        },
        error:function(){
-        $('#'+div_id).prepend("<br><p>Error in image upload or incorrect url type</p>");
+        $('#'+div_id).prepend("<br><p>Incorrect url type</p>");
        },
        processData: false,  // tell jQuery not to process the data
        contentType: false   // tell jQuery not to set contentType

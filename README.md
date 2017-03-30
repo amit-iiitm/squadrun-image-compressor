@@ -14,6 +14,6 @@ Please install them using
 
 # Testing the app:
 Run the file:
-`python site.py` in the terminal and hit `127.0.0.1:5000` in the browser to test 
+`python site.py` in the terminal and hit `127.0.0.1:5050` in the browser to test 
 
 

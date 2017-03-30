@@ -1,5 +1,5 @@
-Pillow==3.4.2
-flask==0.11.1
-werkzeug==0.11.10
-requests==2.9.1
-cStringIO
+scikit-learn==0.18.dev0
+pandas==0.18.1
+numpy==1.11.2
+csv==1.0
+imbalanced-learn==0.2.1
