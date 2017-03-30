@@ -1,0 +1,1 @@
+# squadrun-image-compressor
