@@ -102,7 +102,10 @@ def handle_url():
 		print type(response)
 		host_port=request.url.split('/')[2]
 		res_link='http://'+host_port+'/images/'+response["compressed_link"]
-		res_links.append(res_link)
+		temp_data["download_link"]=res_link
+		temp_data["original_size"]=response["original_size"]
+		temp_data["compressed_size"]=response["compressed_size"]
+		res_links.append(temp_data)
 	print res_links
 	print type(res_links)
 	

@@ -1,8 +1,6 @@
 import sys
-from boto.s3.connection import S3Connection
 from cStringIO import StringIO
 from PIL import Image
-from cStringIO import StringIO
 import urllib2
 import string, random
 import csv
