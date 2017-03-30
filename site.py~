@@ -115,6 +115,7 @@ def handle_url():
 	
 	return json.dumps({"response":"received links","download_links":res_links})
 
+#serve static csv file
 @app.route('/download/<path:path>',methods=['POST','GET'])
 def serve_csv(path):
 	return send_from_directory('',path)

@@ -22,7 +22,7 @@ def checkURL(link):
 #generate unique ID for the image of length 6
 def generate_uid():
 	uid=''
-	for i in range(6):
+	for i in range(20):
 		uid+=random.choice(string.lowercase)
 	return uid
 	

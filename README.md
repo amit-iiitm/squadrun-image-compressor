@@ -14,9 +14,6 @@ Please install them using
 
 # Testing the app:
 Run the file:
-`python site.py` in the terminal and hit `127.0.0.1:5000` in the browser
+`python site.py` in the terminal and hit `127.0.0.1:5000` in the browser to test 
 
-A live demo has been hosted on AWS machine at:
 
-Please test it there also
-  
