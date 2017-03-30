@@ -50,13 +50,14 @@ def compress_img():
 		size_red=float(size_red)/100
 		qlty=int(qlty)
 		print type(size_red)
-		new_file=compress_image(file_obj.filename,qlty,size_red)
+		response=json.loads(compress_image(file_obj.filename,qlty,size_red))
 		print "compressed the image"
-		print new_file
+		print response
+		print type(response)
 		host_port=request.url.split('/')[2]
-		res_url='http://'+host_port+'/images/'+new_file
+		res_url='http://'+host_port+'/images/'+response["compressed_link"]
 		print res_url
-		return json.dumps({"response":"successfully compressed the image",'type':"Image file",'download_link':res_url})
+		return json.dumps({"response":"successfully compressed the image",'type':"Image file",'download_link':res_url,'original_size':response["original_size"],'compressed_size':response["compressed_size"]})
 	elif file_name.split('.')[-1] in ['csv']:
 		url_list=readURL(file_name)
 		print url_list
@@ -67,10 +68,11 @@ def compress_img():
 			print "iterating over the links"
 			
 			print "called for %s with %s %s",url, str(qlty), str(size_red)
-			new_file=compress_image(url,qlty,size_red)
-			print new_file
+			response=json.loads(compress_image(url,qlty,size_red))
+			print response
+			print type(response)
 			host_port=request.url.split('/')[2]
-			res_url='http://'+host_port+'/images/'+new_file
+			res_url='http://'+host_port+'/images/'+response["compressed_link"]
 			print res_url
 			res_list.append(res_url)
 		with open('result.csv','w') as f:
@@ -91,14 +93,19 @@ def handle_url():
 	size_red=float(size_red)/100
 	res_links=[]
 	for link in links:
+		temp_data={}
 		print "iterating over the links"
 		
 		print "called for %s with %s %s",link, str(qlty), str(size_red)
-		new_link=compress_image(link.strip('\r'),qlty,size_red)
-		print new_link
+		response=json.loads(compress_image(link.strip('\r'),qlty,size_red))
+		print response
+		print type(response)
 		host_port=request.url.split('/')[2]
-		res_link='http://'+host_port+'/images/'+new_link
-		res_links.append(res_link)
+		res_link='http://'+host_port+'/images/'+response["compressed_link"]
+		temp_data["download_link"]=res_link
+		temp_data["original_size"]=response["original_size"]
+		temp_data["compressed_size"]=response["compressed_size"]
+		res_links.append(temp_data)
 	print res_links
 	print type(res_links)
 	

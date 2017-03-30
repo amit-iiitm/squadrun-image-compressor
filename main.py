@@ -7,6 +7,7 @@ import urllib2
 import string, random
 import csv
 import os
+import json
 aws_key=''
 aws_secret=''
 bucket_name=''
@@ -51,11 +52,16 @@ def compress_image(pic,img_qlty=80,size_red=0.5):
 	print extn
 	new_width=int(float(img.size[0])*(size_red))
 	new_height=int(float(img.size[1])*(size_red))
+	img.save(os.getcwd()+'/images/'+name+extn,extn,optimize=True)
+	print "the size of original image,", float(os.stat(os.getcwd()+'/images/'+name+extn).st_size)/1000
+	original_size=float(os.stat(os.getcwd()+'/images/'+name+extn).st_size)/1000
 	img=img.resize((new_width,new_height),Image.ANTIALIAS)
 	img.save(os.getcwd()+'/images/'+name+'_new.'+extn,extn,quality=img_qlty,optimize=True)
+	print "the size of image,", float(os.stat(os.getcwd()+'/images/'+name+'_new.'+extn).st_size)/1000
+	compressed_size=float(os.stat(os.getcwd()+'/images/'+name+'_new.'+extn).st_size)/1000
 	img.show()
 	print "success"
-	return str(name)+"_new."+extn
+	return json.dumps({"original_link":str(name)+extn,"compressed_link":str(name)+"_new."+extn,"compressed_size":compressed_size,"original_size":original_size})
 #compress_image('https://images.rapgenius.com/e0c7cc55d92700bc29e53a8b7f50e014.1000x563x1.jpg')
 
 #read list of urls from csv file
