@@ -6,6 +6,7 @@ import os
 import time
 import string
 import random
+import codecs
 from main import compress_image, generate_uid, checkURL
 import csv
 
@@ -21,13 +22,13 @@ app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 #read list of urls from csv file
 def readURL(csv_file):
 	url_list=[]
-	with open(csv_file,'r') as f:
-		reader=csv.reader(f)
-		for line in reader:
-			for col in line:
-				print col
-				if checkURL(col):
-					url_list.append(col)
+	#with open(csv_file,'r') as f:
+	reader=csv.reader(codecs.open(csv_file, 'rU', 'utf-8'))
+	for line in reader:
+		for col in line:
+			print col
+			if checkURL(col):
+				url_list.append(col)
 	print url_list
 	return url_list
 
@@ -42,17 +43,20 @@ def compress_img():
 	file_obj=request.files["file_name"]
 	qlty=request.form['qlty']
 	size_red=request.form['size_red']
-	file_obj.save(secure_filename(file_obj.filename))
-	file_name=file_obj.filename
+	#generate a uid for this file used for storing the file
+	uid=generate_uid()
+	#combine the original file name with uid to save and refrence that file
+	file_name=file_obj.filename.split('.')[0]+'_'+uid+'.'+file_obj.filename.split('.')[-1]
+	file_obj.save(secure_filename(file_name))
 	print file_name
 	print type(file_name)
-	if file_name.split('.')[-1] in ['JPG','JPEG','PNG','png','jpg','jpeg']:
+	if file_name.split('.')[-1] in ['JPG','JPEG','PNG','png','jpg','jpeg','gif','GIF','tiff','TIFF','bmp','BMP']:
 		#valid image file has been uploaded
 		print "valid image file"
 		size_red=float(size_red)/100
 		qlty=int(qlty)
 		print type(size_red)
-		response=json.loads(compress_image(file_obj.filename,qlty,size_red))
+		response=json.loads(compress_image(file_name,qlty,size_red))
 		print "compressed the image"
 		print response
 		print type(response)
@@ -77,16 +81,18 @@ def compress_img():
 			res_url='http://'+host_port+'/images/'+response["compressed_link"]
 			print res_url
 			res_list.append(res_url)
-		with open('result.csv','w') as f:
+		with open('result_'+uid+'.csv','w') as f:
 			writer=csv.writer(f)
 			for i in res_list:
 				writer.writerow([i])
-		return json.dumps({'response':'successfully processed csv file containing image urls','type':"CSV file",'download_link':'http://'+host_port+'/download/result.csv'})
+		return json.dumps({'response':'successfully processed csv file containing image urls','type':"CSV file",'download_link':'http://'+host_port+'/download/result_'+uid+'.csv'})
 	else:
 		return json.dumps({"response":"Invalid image file"})
 #http://www.espncricinfo.com/db/PICTURES/CMS/260800/260855.jpg
 #http://www.espncricinfo.com/db/PICTURES/CMS/209400/209441.3.jpg
-
+#http://eeweb.poly.edu/~yao/EL5123/image/lena_color.tiff
+#http://eeweb.poly.edu/~yao/EL5123/image/lena_gray.bmp
+#http://eeweb.poly.edu/~yao/EL5123/image/barbara_gray.bmp
 #handle multiple urls separated by enter
 @app.route('/handleurls',methods=['GET','POST'])
 def handle_url():
@@ -126,4 +132,4 @@ def send_files(path):
 	return send_from_directory('images', path)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0',threaded=True,port=5049)
+    app.run(debug=True, host='0.0.0.0',threaded=True,port=5051)

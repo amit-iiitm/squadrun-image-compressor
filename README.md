@@ -1,5 +1,11 @@
 # squadrun-image-compressor
 
+# Update
+Added support for GIF, bmp, tiff file types,
+Handled the duplicate file issue, also worked upon cases in which url contains non-ascii characters
+URL is first converted to 'utf-8' format.
+
+
 # Introduction:
 Provides interface to compress an image according to quality and size parameter
 Input image can be provided as a URL or via file upload.
