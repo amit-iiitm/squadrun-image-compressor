@@ -3,7 +3,7 @@
 # Update
 Added support for GIF, bmp, tiff file types,
 Handled the duplicate file issue, also worked upon cases in which url contains non-ascii characters
-URL is first converted to 'utf-8' format to 
+URL is first converted to 'utf-8' format.
 
 
 # Introduction:
@@ -20,6 +20,6 @@ Please install them using
 
 # Testing the app:
 Run the file:
-`python site.py` in the terminal and hit `127.0.0.1:5050` in the browser to test 
+`python site.py` in the terminal and hit `127.0.0.1:5051` in the browser to test 
 
 

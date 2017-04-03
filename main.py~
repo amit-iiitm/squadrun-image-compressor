@@ -1,15 +1,11 @@
 import sys
 from cStringIO import StringIO
-from PIL import Image
+from PIL import Image, ImageSequence
 import urllib2
 import string, random
 import csv
 import os
 import json
-import images2gif
-import ImageSequence
-import Image
-import gifmaker
 import imageio
 import numpy
 
@@ -107,7 +103,7 @@ def compress_image(pic,img_qlty=80,size_red=0.5):
 
 #compress_image('https://images.rapgenius.com/e0c7cc55d92700bc29e53a8b7f50e014.1000x563x1.jpg')
 #compress_image('http://res.cloudinary.com/private-demo/image/private/sheep.jpg')
-#print compress_image('imdone.gif')
+print compress_image('imdone.gif')
 #print type(compress_image('https://media4.giphy.com/media/6ox6GvNJXifiE/giphy.gif'))
 #compress_image('https://media0.giphy.com/media/3oKIPo7VdVtho7deRG/giphy.gif')
 #print type(compress_image('amanda_seyfried_2017-t2.jpg'))

@@ -1,15 +1,11 @@
 import sys
 from cStringIO import StringIO
-from PIL import Image
+from PIL import Image, ImageSequence
 import urllib2
 import string, random
 import csv
 import os
 import json
-import images2gif
-import ImageSequence
-import Image
-import gifmaker
 import imageio
 import numpy
 
